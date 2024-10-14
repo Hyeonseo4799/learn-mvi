@@ -1,4 +1,4 @@
-package com.example.search.component
+package com.example.user.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -19,7 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.search.R
+import com.example.user.R
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable

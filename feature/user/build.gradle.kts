@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.search"
+    namespace = "com.example.user"
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -34,4 +34,7 @@ dependencies {
     implementation(libs.paging.compose)
 
     implementation(libs.hilt.navigation.compose)
+
+
+    implementation(libs.landscapist.glide)
 }

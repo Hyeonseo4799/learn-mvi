@@ -28,6 +28,8 @@ android {
 dependencies {
 
     implementation(project(":feature:search"))
+    implementation(project(":feature:user"))
+
     implementation(libs.androidx.activity)
 
     implementation(libs.material)

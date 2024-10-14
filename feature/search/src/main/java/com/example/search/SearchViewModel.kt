@@ -11,21 +11,15 @@ import org.orbitmvi.orbit.viewmodel.container
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(
-    private val searchUsersUseCase: SearchUsersUseCase
-) : ContainerHost<SearchState, SearchSideEffect>, ViewModel() {
+class SearchViewModel @Inject constructor() : ContainerHost<SearchState, SearchSideEffect>, ViewModel() {
     override val container = container<SearchState, SearchSideEffect>(SearchState())
 
-    fun searchUsers(query: String) = intent {
-        reduce { state.copy(isLoading = true) }
-
-        val users = searchUsersUseCase(query)
-            .cachedIn(viewModelScope)
-            .catch {
-                reduce { state.copy(error = it.message.toString()) }
-                postSideEffect(SearchSideEffect.ShowError(it.message.toString()))
-            }
-
-        reduce { state.copy(isLoading = false, users = users) }
+    fun enterQuery(query: String) = intent {
+        if (query.isNotEmpty()) {
+            postSideEffect(SearchSideEffect.NavigateToUser(query))
+        } else {
+            reduce { state.copy(error = "query must not be empty") }
+            postSideEffect(SearchSideEffect.ShowError(state.error))
+        }
     }
 }

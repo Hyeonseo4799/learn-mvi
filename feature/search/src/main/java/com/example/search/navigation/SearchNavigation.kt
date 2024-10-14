@@ -7,8 +7,9 @@ import com.example.search.SearchRoute
 
 fun NavGraphBuilder.searchScreen(
     showSnackBar: (String) -> Unit,
+    navigateToUser: (String) -> Unit,
 ) {
     composable<Route.Search> {
-        SearchRoute(showSnackBar = showSnackBar)
+        SearchRoute(showSnackBar = showSnackBar, navigateToUser = navigateToUser)
     }
 }
