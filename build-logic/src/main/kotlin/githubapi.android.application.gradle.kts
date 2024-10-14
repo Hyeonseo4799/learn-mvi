@@ -18,6 +18,7 @@ android {
 }
 
 dependencies {
+    "implementation"(project(":core:navigation"))
     "implementation"(libs.findLibrary("androidx-navigation").get())
 
     "implementation"(libs.findLibrary("androidx.core.ktx").get())
