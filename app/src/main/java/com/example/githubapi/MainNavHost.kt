@@ -3,16 +3,16 @@ package com.example.githubapi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.example.main.navigation.MainRoute
-import com.example.main.navigation.mainScreen
+import com.example.search.navigation.SearchRoute
+import com.example.search.navigation.searchScreen
 
 @Composable
 fun MainNavHost(
     navController: NavHostController,
-    startDestination: String = MainRoute,
+    startDestination: String = SearchRoute,
     showSnackBar: (String) -> Unit
 ) {
     NavHost(navController, startDestination) {
-        mainScreen(showSnackBar = showSnackBar)
+        searchScreen(showSnackBar = showSnackBar)
     }
 }

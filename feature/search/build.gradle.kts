@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.main"
+    namespace = "com.example.search"
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

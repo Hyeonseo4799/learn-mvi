@@ -1,4 +1,4 @@
-package com.example.main
+package com.example.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,10 +11,10 @@ import org.orbitmvi.orbit.viewmodel.container
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class SearchViewModel @Inject constructor(
     private val searchUsersUseCase: SearchUsersUseCase
-) : ContainerHost<MainState, MainSideEffect>, ViewModel() {
-    override val container = container<MainState, MainSideEffect>(MainState())
+) : ContainerHost<SearchState, SearchSideEffect>, ViewModel() {
+    override val container = container<SearchState, SearchSideEffect>(SearchState())
 
     fun searchUsers(query: String) = intent {
         reduce { state.copy(isLoading = true) }
@@ -23,7 +23,7 @@ class MainViewModel @Inject constructor(
             .cachedIn(viewModelScope)
             .catch {
                 reduce { state.copy(error = it.message.toString()) }
-                postSideEffect(MainSideEffect.ShowError(it.message.toString()))
+                postSideEffect(SearchSideEffect.ShowError(it.message.toString()))
             }
 
         reduce { state.copy(isLoading = false, users = users) }

@@ -27,8 +27,7 @@ android {
 
 dependencies {
 
-    implementation(project(":feature:main"))
-
+    implementation(project(":feature:search"))
     implementation(libs.androidx.activity)
 
     implementation(libs.material)
