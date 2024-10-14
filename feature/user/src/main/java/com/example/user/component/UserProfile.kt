@@ -30,12 +30,10 @@ fun UserProfile(
 ) {
     Row(
         modifier = Modifier
-            .clickable(onClick = onClick)
-            .background(
-                color = Color.LightGray,
-                shape = RoundedCornerShape(12.dp)
-            )
+            .clip(RoundedCornerShape(12.dp))
+            .background(color = Color.LightGray,)
             .fillMaxWidth()
+            .clickable(onClick = onClick)
             .padding(10.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(20.dp)
