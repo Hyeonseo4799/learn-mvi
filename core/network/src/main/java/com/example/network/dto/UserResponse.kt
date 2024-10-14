@@ -14,5 +14,5 @@ data class User(
     @SerialName("login") val login: String,
     @SerialName("id") val id: Long,
     @SerialName("avatar_url") val avatarUrl: String,
-    @SerialName("url") val url: String,
+    @SerialName("html_url") val url: String,
 )

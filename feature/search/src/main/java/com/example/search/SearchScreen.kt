@@ -1,4 +1,4 @@
-package com.example.main
+package com.example.search
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -28,36 +29,38 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
+import com.example.search.component.UserProfile
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
 @Composable
-fun MainRoute(
-    viewModel: MainViewModel = hiltViewModel(),
+fun SearchRoute(
+    viewModel: SearchViewModel = hiltViewModel(),
     showSnackBar: (String) -> Unit
 ) {
     val uiState by viewModel.collectAsState()
 
     viewModel.collectSideEffect { sideEffect ->
         when (sideEffect) {
-            is MainSideEffect.ShowError -> showSnackBar(sideEffect.message)
+            is SearchSideEffect.ShowError -> showSnackBar(sideEffect.message)
         }
     }
 
-    MainScreen(
+    SearchScreen(
         uiState = uiState,
         searchUsers = viewModel::searchUsers,
     )
 }
 
 @Composable
-internal fun MainScreen(
-    uiState: MainState,
+internal fun SearchScreen(
+    uiState: SearchState,
     searchUsers: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var query by remember { mutableStateOf("") }
     val users = uiState.users.collectAsLazyPagingItems()
+    val uriHandler = LocalUriHandler.current
 
     Column(
         modifier = modifier
@@ -107,7 +110,8 @@ internal fun MainScreen(
                 if (user != null) {
                     UserProfile(
                         username = user.login,
-                        imageUrl = user.avatarUrl
+                        imageUrl = user.avatarUrl,
+                        onClick = { uriHandler.openUri(user.url) }
                     )
                 }
             }
@@ -117,9 +121,9 @@ internal fun MainScreen(
 
 @Preview
 @Composable
-private fun MainScreenPreview() {
-    MainScreen(
-        uiState = MainState(),
+private fun SearchScreenPreview() {
+    SearchScreen(
+        uiState = SearchState(),
         searchUsers = { },
     )
 }
