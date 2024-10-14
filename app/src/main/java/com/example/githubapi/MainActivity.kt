@@ -32,7 +32,6 @@ class MainActivity : ComponentActivity() {
                 MainNavHost(
                     navController = rememberNavController(),
                     showSnackBar = {
-                        Log.d("showsnackbar", "called")
                         scope.launch {
                             snackbarHostState.showSnackbar(it)
                         }
