@@ -14,7 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -52,7 +52,7 @@ internal fun SearchScreen(
     enterQuery: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    var query by remember { mutableStateOf("") }
+    var query by rememberSaveable { mutableStateOf("") }
 
     Row(
         modifier = modifier
@@ -88,7 +88,7 @@ internal fun SearchScreen(
 
         Button(
             shape = RoundedCornerShape(16.dp),
-            contentPadding = PaddingValues(vertical = 16.dp, horizontal = 8.dp),
+            contentPadding = PaddingValues(vertical = 16.dp, horizontal = 24.dp),
             onClick = { enterQuery(query) },
         ) {
             Text(text = "유저 검색")
